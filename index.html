@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Spengjati Alumni Association</title>
+  <meta name="description" content="Website resmi Spengjati Alumni Association: kegiatan, program, galeri, dan informasi pendaftaran." />
+
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    // Tailwind config (opsional - branding warna)
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#f0f9ff', 100: '#e0f2fe', 200: '#bae6fd', 300: '#7dd3fc',
+              400: '#38bdf8', 500: '#0ea5e9', 600: '#0284c7', 700: '#0369a1', 800: '#075985', 900: '#0c4a6e'
+            },
+            accent: {
+              400: '#fb923c', 500: '#f97316', 600: '#ea580c'
+            }
+          },
+          fontFamily: {
+            display: ['Inter', 'ui-sans-serif', 'system-ui', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial'],
+            body: ['Inter', 'ui-sans-serif', 'system-ui']
+          },
+          boxShadow: {
+            soft: '0 10px 30px rgba(2,132,199,0.15)'
+          }
+        }
+      }
+    }
+  </script>
+  <!-- Inter font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    html { scroll-behavior: smooth; }
+    .glass { backdrop-filter: blur(10px); background: rgba(255,255,255,0.65); }
+    .hero-overlay { background: linear-gradient(180deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.45) 35%, rgba(0,0,0,0.25) 100%); }
+  </style>
+</head>
+<body class="font-body text-slate-800 antialiased">
+  <!-- Navbar -->
+  <header class="fixed inset-x-0 top-0 z-50">
+    <nav class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="mt-4 flex items-center justify-between rounded-2xl border border-white/30 bg-white/70 p-3 shadow-soft backdrop-blur supports-[backdrop-filter]:glass">
+        <a href="#home" class="flex items-center gap-3">
+          <img src="logo.png" alt="Logo" class="h-10 w-10 rounded-full object-cover ring-2 ring-brand-500/20" onerror="this.src='https://dummyimage.com/80x80/0ea5e9/ffffff&text=SA'">
+          <div class="leading-tight">
+            <h1 class="font-extrabold tracking-tight text-brand-700">PANGJATI 02</h1>
+            <p class="text-xs text-slate-500">"Ngabehi Ing Rupo Manunggal Ing Roso"</p>
+          </div>
+        </a>
+        <div class="hidden items-center gap-6 md:flex">
+          <a href="#about" class="text-sm font-medium hover:text-brand-700">Tentang</a>
+          <a href="#programs" class="text-sm font-medium hover:text-brand-700">Program</a>
+          <a href="#gallery" class="text-sm font-medium hover:text-brand-700">Galeri</a>
+          <a href="#team" class="text-sm font-medium hover:text-brand-700">Pengurus</a>
+          <a href="#events" class="text-sm font-medium hover:text-brand-700">Agenda</a>
+          <a href="#contact" class="text-sm font-medium hover:text-brand-700">Kontak</a>
+          <a href="#join" class="rounded-full bg-brand-600 px-5 py-2 text-sm font-semibold text-white shadow hover:bg-brand-700">Gabung</a>
+        </div>
+        <!-- Mobile menu button -->
+        <button id="menuBtn" class="md:hidden rounded-xl border border-slate-200 p-2" aria-label="Buka menu">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-6 w-6"><path d="M3.75 5.25h16.5v1.5H3.75v-1.5Zm0 6h16.5v1.5H3.75v-1.5Zm0 6h16.5v1.5H3.75v-1.5Z"/></svg>
+        </button>
+      </div>
+    </nav>
+    <!-- Mobile menu -->
+    <div id="mobileMenu" class="mx-auto hidden max-w-7xl px-4 sm:px-6 lg:px-8 md:hidden">
+      <div class="mt-3 space-y-1 rounded-2xl bg-white p-4 shadow">
+        <a href="#about" class="block rounded-lg px-3 py-2 text-sm font-medium hover:bg-slate-50">Tentang</a>
+        <a href="#programs" class="block rounded-lg px-3 py-2 text-sm font-medium hover:bg-slate-50">Program</a>
+        <a href="#gallery" class="block rounded-lg px-3 py-2 text-sm font-medium hover:bg-slate-50">Galeri</a>
+        <a href="#team" class="block rounded-lg px-3 py-2 text-sm font-medium hover:bg-slate-50">Pengurus</a>
+        <a href="#events" class="block rounded-lg px-3 py-2 text-sm font-medium hover:bg-slate-50">Agenda</a>
+        <a href="#contact" class="block rounded-lg px-3 py-2 text-sm font-medium hover:bg-slate-50">Kontak</a>
+        <a href="#join" class="block rounded-full bg-brand-600 px-3 py-2 text-center text-sm font-semibold text-white">Gabung</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section id="home" class="relative flex min-h-[92vh] items-center overflow-hidden pt-28">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaan9qGmxNJSfnJcrtrJk9aNL4UkTpnWqJWA&s" alt="Hero" class="absolute inset-0 -z-10 h-full w-full object-cover"/>
+    <div class="hero-overlay absolute inset-0 -z-10"></div>
+
+    <div class="relative mx-auto grid max-w-7xl grid-cols-1 items-center gap-10 px-4 py-24 sm:px-6 lg:grid-cols-2 lg:px-8">
+      <div class="text-white">
+        <span class="inline-flex items-center rounded-full bg-white/20 px-3 py-1 text-xs font-semibold backdrop-blur">Official Extracurricular Alumni Account (LP)</span>
+        <h2 class="mt-5 text-4xl font-extrabold leading-tight tracking-tight sm:text-5xl">Berjejaring, Berkarya, <span class="text-accent-400">Bermanfaat</span>.</h2>
+        <p class="mt-5 max-w-xl text-white/90">Komunitas alumni yang aktif di kegiatan pramuka, kepemimpinan, sosial, olahraga, hingga pengabdian. Ikut terlibat dalam program, event, dan mentorship.</p>
+        <div class="mt-8 flex flex-wrap items-center gap-3">
+          <a href="#join" class="rounded-2xl bg-accent-500 px-6 py-3 font-semibold text-white shadow hover:bg-accent-600">Gabung Sekarang</a>
+          <a href="#programs" class="rounded-2xl bg-white/10 px-6 py-3 font-semibold text-white ring-1 ring-white/30 backdrop-blur hover:bg-white/20">Lihat Program</a>
+        </div>
+        <div class="mt-10 grid max-w-md grid-cols-3 gap-6 text-center">
+          <div>
+            <p class="text-3xl font-extrabold">1.2K+</p>
+            <p class="text-xs text-white/80">Pengikut</p>
+          </div>
+          <div>
+            <p class="text-3xl font-extrabold">78</p>
+            <p class="text-xs text-white/80">Postingan</p>
+          </div>
+          <div>
+            <p class="text-3xl font-extrabold">7+</p>
+            <p class="text-xs text-white/80">Program Aktif</p>
+          </div>
+        </div>
+      </div>
+      <div class="relative">
+        <div class="rounded-3xl bg-white/10 p-2 shadow-2xl ring-1 ring-white/20 backdrop-blur">
+          <img class="h-[420px] w-full rounded-2xl object-cover" src="https://fajarsatu.com/wp-content/uploads/2019/10/IMG_20191004_193448.jpg" alt="Kegiatan lapangan" />
+        </div>
+        <div class="absolute -bottom-6 -left-6 hidden w-40 rotate-[-6deg] rounded-xl bg-white p-3 shadow-lg sm:block">
+          <p class="text-xs font-semibold">Uji TKK</p>
+          <p class="text-[11px] text-slate-500">Pelatihan keterampilan dan karakter</p>
+        </div>
+        <div class="absolute -right-6 -top-6 hidden w-40 rotate-[6deg] rounded-xl bg-white p-3 shadow-lg sm:block">
+          <p class="text-xs font-semibold">CAMP</p>
+          <p class="text-[11px] text-slate-500">Perkemahan dan kebersamaan</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about" class="relative py-24">
+    <div class="absolute inset-0 -z-10 bg-gradient-to-b from-white via-sky-50 to-white"></div>
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 gap-12 lg:grid-cols-2">
+        <div>
+          <h3 class="text-3xl font-extrabold tracking-tight text-slate-900">Tentang Organisasi</h3>
+          <p class="mt-5 text-slate-600">pangjati02 Alumni Association merupakan komunitas alumni yang berfokus pada pengembangan diri, kepemimpinan, keterampilan pramuka, dan pengabdian masyarakat. Kami rutin menyelenggarakan pelatihan, camp, olahraga, hingga bakti sosial.</p>
+          <dl class="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-3">
+            <div class="rounded-2xl border border-slate-200 p-6 shadow-sm">
+              <dt class="text-sm font-medium text-slate-500">Berdiri</dt>
+              <dd class="mt-2 text-2xl font-bold">2019</dd>
+            </div>
+            <div class="rounded-2xl border border-slate-200 p-6 shadow-sm">
+              <dt class="text-sm font-medium text-slate-500">Anggota</dt>
+              <dd class="mt-2 text-2xl font-bold">500+</dd>
+            </div>
+            <div class="rounded-2xl border border-slate-200 p-6 shadow-sm">
+              <dt class="text-sm font-medium text-slate-500">Kegiatan/Tahun</dt>
+              <dd class="mt-2 text-2xl font-bold">40+</dd>
+            </div>
+          </dl>
+        </div>
+        <div class="rounded-3xl border border-slate-200 bg-white p-6 shadow-soft">
+          <h4 class="text-lg font-semibold">Misi Kami</h4>
+          <ul class="mt-4 list-disc space-y-2 pl-5 text-slate-600">
+            <li>Menguatkan silaturahmi antar alumni lintas angkatan.</li>
+            <li>Mendorong karakter unggul melalui program pramuka dan sosial.</li>
+            <li>Menjadi wadah mentor serta pengembangan minat-bakat (olahraga, memasak, menjahit, dsb).</li>
+          </ul>
+          <div class="mt-6 rounded-2xl bg-gradient-to-r from-brand-600 to-accent-500 p-1">
+            <div class="rounded-2xl bg-white/90 p-5">
+              <p class="text-sm text-slate-600">Motto:</p>
+              <p class="text-xl font-bold text-brand-700">"Ngabehi Ing Rupo Manunggal Ing Roso”</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Programs -->
+  <section id="programs" class="py-24">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="mx-auto max-w-2xl text-center">
+        <h3 class="text-3xl font-extrabold tracking-tight">Program & Kegiatan</h3>
+        <p class="mt-3 text-slate-600">Ikuti berbagai kegiatan seru dan bermanfaat sepanjang tahun.</p>
+      </div>
+      <div class="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <!-- Card -->
+        <article class="group rounded-3xl border border-slate-200 bg-white p-6 shadow-soft transition hover:-translate-y-1">
+          <div class="flex items-center gap-3">
+            <span class="inline-flex h-10 w-10 items-center justify-center rounded-2xl bg-brand-100 text-brand-700">🏕️</span>
+            <h4 class="text-lg font-semibold">CAMP & Perkemahan</h4>
+          </div>
+          <p class="mt-3 text-sm text-slate-600">Melatih kemandirian, kekompakan, dan kepemimpinan melalui kegiatan alam bebas.</p>
+        </article>
+        <article class="group rounded-3xl border border-slate-200 bg-white p-6 shadow-soft transition hover:-translate-y-1">
+          <div class="flex items-center gap-3">
+            <span class="inline-flex h-10 w-10 items-center justify-center rounded-2xl bg-brand-100 text-brand-700">🎖️</span>
+            <h4 class="text-lg font-semibold">Uji TKK</h4>
+          </div>
+          <p class="mt-3 text-sm text-slate-600">Peningkatan keterampilan (memasak, menjahit, P3K, dan lainnya) dalam format kompeten.</p>
+        </article>
+        <article class="group rounded-3xl border border-slate-200 bg-white p-6 shadow-soft transition hover:-translate-y-1">
+          <div class="flex items-center gap-3">
+            <span class="inline-flex h-10 w-10 items-center justify-center rounded-2xl bg-brand-100 text-brand-700">🏃</span>
+            <h4 class="text-lg font-semibold">Olahraga & Lomba</h4>
+          </div>
+          <p class="mt-3 text-sm text-slate-600">Mengasah sportivitas melalui futsal, basket, dan kompetisi antar angkatan.</p>
+        </article>
+        <article class="group rounded-3xl border border-slate-200 bg-white p-6 shadow-soft transition hover:-translate-y-1">
+          <div class="flex items-center gap-3">
+            <span class="inline-flex h-10 w-10 items-center justify-center rounded-2xl bg-brand-100 text-brand-700">🤝</span>
+            <h4 class="text-lg font-semibold">Bakti Sosial</h4>
+          </div>
+          <p class="mt-3 text-sm text-slate-600">Gerakan peduli lingkungan dan masyarakat sekitar sekolah.</p>
+        </article>
+        <article class="group rounded-3xl border border-slate-200 bg-white p-6 shadow-soft transition hover:-translate-y-1">
+          <div class="flex items-center gap-3">
+            <span class="inline-flex h-10 w-10 items-center justify-center rounded-2xl bg-brand-100 text-brand-700">🧭</span>
+            <h4 class="text-lg font-semibold">Pelatihan Kepemimpinan</h4>
+          </div>
+          <p class="mt-3 text-sm text-slate-600">Workshop public speaking, teamwork, dan perencanaan event.</p>
+        </article>
+        <article class="group rounded-3xl border border-slate-200 bg-white p-6 shadow-soft transition hover:-translate-y-1">
+          <div class="flex items-center gap-3">
+            <span class="inline-flex h-10 w-10 items-center justify-center rounded-2xl bg-brand-100 text-brand-700">📣</span>
+            <h4 class="text-lg font-semibold">Informasi & Media</h4>
+          </div>
+          <p class="mt-3 text-sm text-slate-600">Publikasi kegiatan melalui IG, website, dan media partner.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery -->
+  <section id="gallery" class="bg-slate-50 py-24">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="mx-auto max-w-2xl text-center">
+        <h3 class="text-3xl font-extrabold tracking-tight">Galeri</h3>
+        <p class="mt-3 text-slate-600">Cuplikan momen terbaik dari kegiatan kami.</p>
+      </div>
+      <div class="mt-12 grid grid-cols-2 gap-3 sm:grid-cols-3 md:gap-4">
+        <img class="aspect-[4/3] w-full rounded-2xl object-cover" src="img/logo apar.png" alt="Kegiatan 1"/>
+        <img class="aspect-[4/3] w-full rounded-2xl object-cover" src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?q=80&w=2070&auto=format&fit=crop" alt="Kegiatan 2"/>
+        <img class="aspect-[4/3] w-full rounded-2xl object-cover" src="https://images.unsplash.com/photo-1476480862126-209bfaa8edc8?q=80&w=2028&auto=format&fit=crop" alt="Kegiatan 3"/>
+        <img class="aspect-[4/3] w-full rounded-2xl object-cover" src="https://images.unsplash.com/photo-1540569014015-19a7be504e3a?q=80&w=2070&auto=format&fit=crop" alt="Kegiatan 4"/>
+        <img class="aspect-[4/3] w-full rounded-2xl object-cover" src="https://images.unsplash.com/photo-1521417531071-5a1239d998af?q=80&w=2071&auto=format&fit=crop" alt="Kegiatan 5"/>
+        <img class="aspect-[4/3] w-full rounded-2xl object-cover" src="https://images.unsplash.com/photo-1511884642898-4c92249e20b6?q=80&w=2070&auto=format&fit=crop" alt="Kegiatan 6"/>
+      </div>
+      <div class="mt-8 text-center">
+        <a href="https://www.instagram.com/pangjati02/" target="_blank" class="inline-flex items-center gap-2 rounded-full bg-slate-900 px-5 py-3 text-sm font-semibold text-white shadow hover:bg-slate-800">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-5 w-5"><path d="M7 2C4.243 2 2 4.243 2 7v10c0 2.757 2.243 5 5 5h10c2.757 0 5-2.243 5-5V7c0-2.757-2.243-5-5-5H7Zm0 2h10a3 3 0 0 1 3 3v10a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3V7a3 3 0 0 1 3-3Zm10 1.75a1.25 1.25 0 1 0 0 2.5 1.25 1.25 0 0 0 0-2.5ZM12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10Zm0 2a3 3 0 1 1 0 6 3 3 0 0 1 0-6Z"/></svg>
+          Lihat lebih banyak di Instagram
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Team -->
+  <section id="team" class="py-24">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="mx-auto max-w-2xl text-center">
+        <h3 class="text-3xl font-extrabold tracking-tight">Pengurus</h3>
+        <p class="mt-3 text-slate-600">Tim inti yang menggerakkan roda organisasi.</p>
+      </div>
+      <div class="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <!-- Person Card -->
+        <div class="rounded-3xl border border-slate-200 bg-white p-6 text-center shadow-sm">
+          <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=1974&auto=format&fit=crop" alt="Ketua" class="mx-auto h-28 w-28 rounded-full object-cover ring-4 ring-brand-100" />
+          <h4 class="mt-4 text-lg font-semibold">Nama Ketua</h4>
+          <p class="text-sm text-slate-500">Ketua Umum</p>
+        </div>
+        <div class="rounded-3xl border border-slate-200 bg-white p-6 text-center shadow-sm">
+          <img src="https://images.unsplash.com/photo-1547425260-76bcadfb4f2c?q=80&w=1974&auto=format&fit=crop" alt="Wakil" class="mx-auto h-28 w-28 rounded-full object-cover ring-4 ring-brand-100" />
+          <h4 class="mt-4 text-lg font-semibold">Nama Wakil</h4>
+          <p class="text-sm text-slate-500">Wakil Ketua</p>
+        </div>
+        <div class="rounded-3xl border border-slate-200 bg-white p-6 text-center shadow-sm">
+          <img src="https://images.unsplash.com/photo-1545996124-0501ebae84d0?q=80&w=1974&auto=format&fit=crop" alt="Sekretaris" class="mx-auto h-28 w-28 rounded-full object-cover ring-4 ring-brand-100" />
+          <h4 class="mt-4 text-lg font-semibold">Nama Sekretaris</h4>
+          <p class="text-sm text-slate-500">Sekretaris</p>
+        </div>
+        <div class="rounded-3xl border border-slate-200 bg-white p-6 text-center shadow-sm">
+          <img src="https://images.unsplash.com/photo-1527980965255-d3b416303d12?q=80&w=1974&auto=format&fit=crop" alt="Bendahara" class="mx-auto h-28 w-28 rounded-full object-cover ring-4 ring-brand-100" />
+          <h4 class="mt-4 text-lg font-semibold">Nama Bendahara</h4>
+          <p class="text-sm text-slate-500">Bendahara</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Events / Timeline -->
+  <section id="events" class="bg-gradient-to-b from-white to-sky-50 py-24">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="mx-auto max-w-2xl text-center">
+        <h3 class="text-3xl font-extrabold tracking-tight">Agenda Terdekat</h3>
+        <p class="mt-3 text-slate-600">Catat tanggalnya dan jangan sampai terlewat.</p>
+      </div>
+
+      <ol class="mx-auto mt-12 space-y-6 border-l-2 border-slate-200 pl-6 md:max-w-3xl">
+        <li class="relative">
+          <span class="absolute -left-[9px] mt-1 h-4 w-4 rounded-full border-2 border-white bg-brand-500 shadow"></span>
+          <div class="rounded-2xl bg-white p-5 shadow-sm ring-1 ring-slate-100">
+            <h4 class="font-semibold">Camp Alumni 2025</h4>
+            <p class="text-sm text-slate-500">20–22 Juli 2025 • Bumi Perkemahan</p>
+            <p class="mt-2 text-sm text-slate-600">Kegiatan perkemahan lintas angkatan: outbond, api unggun, dan malam keakraban.</p>
+          </div>
+        </li>
+        <li class="relative">
+          <span class="absolute -left-[9px] mt-1 h-4 w-4 rounded-full border-2 border-white bg-accent-500 shadow"></span>
+          <div class="rounded-2xl bg-white p-5 shadow-sm ring-1 ring-slate-100">
+            <h4 class="font-semibold">Uji TKK & Pelatihan P3K</h4>
+            <p class="text-sm text-slate-500">3 Agustus 2025 • Aula Sekolah</p>
+            <p class="mt-2 text-sm text-slate-600">Upgrade skill pertolongan pertama, memasak lapangan, dan kerapian.</p>
+          </div>
+        </li>
+        <li class="relative">
+          <span class="absolute -left-[9px] mt-1 h-4 w-4 rounded-full border-2 border-white bg-slate-400 shadow"></span>
+          <div class="rounded-2xl bg-white p-5 shadow-sm ring-1 ring-slate-100">
+            <h4 class="font-semibold">Sparring Futsal Alumni</h4>
+            <p class="text-sm text-slate-500">17 Agustus 2025 • GOR Setempat</p>
+            <p class="mt-2 text-sm text-slate-600">Friendly match antar angkatan, ajang silaturahmi dan olahraga.</p>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- Join CTA -->
+  <section id="join" class="relative py-24">
+    <div class="absolute inset-0 -z-10 bg-[radial-gradient(40rem_20rem_at_20%_20%,theme(colors.brand.100),transparent),radial-gradient(40rem_20rem_at_80%_50%,theme(colors.accent.400)/20%,transparent)]"></div>
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="rounded-3xl bg-white p-8 shadow-soft md:p-12">
+        <div class="grid grid-cols-1 items-center gap-8 md:grid-cols-3">
+          <div class="md:col-span-2">
+            <h3 class="text-2xl font-extrabold tracking-tight">Gabung Komunitas Alumni</h3>
+            <p class="mt-2 text-slate-600">Isi formulir singkat atau hubungi kami untuk terlibat di kegiatan dan mendapatkan info terbaru.</p>
+          </div>
+          <div class="flex flex-wrap gap-3 md:justify-end">
+            <a href="https://forms.gle/" target="_blank" class="rounded-xl bg-brand-600 px-5 py-3 font-semibold text-white hover:bg-brand-700">Daftar Online</a>
+            <a href="https://wa.me/62812xxxxxxx" target="_blank" class="rounded-xl border border-slate-300 px-5 py-3 font-semibold text-slate-700 hover:bg-slate-50">WhatsApp</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="bg-slate-50 py-24">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 gap-8 md:grid-cols-2">
+        <div>
+          <h3 class="text-3xl font-extrabold tracking-tight">Kontak</h3>
+          <p class="mt-3 text-slate-600">Hubungi kami untuk kolaborasi, donasi, atau pertanyaan seputar kegiatan.</p>
+          <dl class="mt-6 space-y-3 text-sm text-slate-600">
+            <div class="flex items-center gap-3"><span>📍</span> <span>Jl. Sunan Gn. Jati, Grogol, Kec. Gunungjati, Kabupaten Cirebon, Jawa Barat 45151</span></div>
+            <div class="flex items-center gap-3"><span>✉️</span> <a class="hover:underline" href="mailto:email@domain.com">pangjati02@gmail.com</a></div>
+            <div class="flex items-center gap-3"><span>📞</span> <a class="hover:underline" href="tel:+62812xxxxxxx">+62 812-xxx-xxxx</a></div>
+            <div class="flex items-center gap-3"><span>📷</span> <a class="hover:underline" href="https://instagram.com/pangjati02" target="_blank">@pangjati02</a></div>
+          </dl>
+        </div>
+        <div class="overflow-hidden rounded-3xl border border-slate-200 shadow-sm">
+          <iframe title="Lokasi" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3952.0!2d110.0!3d-7.8!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0:0x0!2zN8KwNDgnMDAuMCJTIDExMMKwMDAnMDAuMCJF!5e0!3m2!1sid!2sid!4v0000000000" width="100%" height="360" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="border-t border-slate-200 py-10">
+    <div class="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 px-4 sm:px-6 md:flex-row lg:px-8">
+      <p class="text-sm text-slate-500">© <span id="year"></span> Spengjati Alumni Association. All rights reserved.</p>
+      <div class="flex items-center gap-4 text-sm">
+        <a href="#home" class="hover:text-brand-700">Beranda</a>
+        <a href="#about" class="hover:text-brand-700">Tentang</a>
+        <a href="#programs" class="hover:text-brand-700">Program</a>
+        <a href="#contact" class="hover:text-brand-700">Kontak</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+    // Mobile menu toggle
+    const btn = document.getElementById('menuBtn');
+    const menu = document.getElementById('mobileMenu');
+    btn?.addEventListener('click', () => menu.classList.toggle('hidden'));
+  </script>
+</body>
+</html>
