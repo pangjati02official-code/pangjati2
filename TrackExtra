@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Trackextra - Absensi Ekskul SMPN 2 Gunung Jati</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Inter:wght@400;500&display=swap');
+        
+        :root {
+            --teal: #00E0B8;
+            --navy: #1E3A8A;
+            --orange: #FF6B00;
+        }
+        
+        * { font-family: 'Inter', sans-serif; }
+        h1, h2, .title { font-family: 'Poppins', sans-serif; }
+        
+        body {
+            background: linear-gradient(135deg, #0F172A, #1E3A8A);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        /* PHONE FRAME - Mirip tampilan aplikasi di Play Store */
+        .phone-frame {
+            width: 100%;
+            max-width: 390px;
+            height: 780px;
+            background: #111111;
+            border-radius: 58px;
+            border: 12px solid #111111;
+            box-shadow: 0 0 60px rgba(0, 224, 184, 0.4),
+                        0 25px 50px -12px rgb(0 0 0 / 0.4);
+            overflow: hidden;
+            position: relative;
+            margin: 0 auto;
+        }
+        
+        .phone-frame::before {
+            content: '';
+            position: absolute;
+            top: 18px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 140px;
+            height: 28px;
+            background: #111111;
+            border-radius: 30px;
+            z-index: 50;
+        }
+        
+        .app-screen {
+            height: 100%;
+            background: linear-gradient(to bottom, #1E3A8A, #00E0B8);
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .glass { 
+            background: rgba(255,255,255,0.12);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,0.25);
+            box-shadow: 0 8px 32px rgba(0, 224, 184, 0.15);
+        }
+        
+        .neon-teal { text-shadow: 0 0 25px #00E0B8; }
+        
+        .btn-press {
+            transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .btn-press:active {
+            transform: scale(0.92);
+            box-shadow: 0 0 40px #00E0B8;
+        }
+        
+        .confetti {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            animation: confetti-fall 3.5s linear forwards;
+            z-index: 9999;
+        }
+        
+        @keyframes confetti-fall {
+            0% { transform: translateY(-100vh) rotate(0deg); }
+            100% { transform: translateY(120vh) rotate(1080deg); }
+        }
+        
+        .logo-glow { animation: logoPulse 2s infinite ease-in-out; }
+        @keyframes logoPulse {
+            0%, 100% { text-shadow: 0 0 20px #00E0B8; }
+            50% { text-shadow: 0 0 50px #00E0B8; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- PHONE FRAME (seperti di Play Store) -->
+    <div class="phone-frame">
+        <div class="app-screen" id="appContainer">
+            
+            <!-- SPLASH SCREEN -->
+            <div id="splash" class="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-[#1E3A8A] to-[#00E0B8] z-50 transition-opacity duration-700">
+                <div class="text-center">
+                    <div class="relative mx-auto w-36 h-36 flex items-center justify-center logo-glow">
+                        <i class="fa-solid fa-shield-halved text-8xl text-white drop-shadow-2xl" style="filter: drop-shadow(0 0 50px #00E0B8);"></i>
+                        <div class="absolute text-4xl font-bold neon-teal tracking-widest">Trackextra</div>
+                    </div>
+                    <p class="mt-6 text-2xl font-bold text-white">Absensi Ekskul Aman, Cepat, & Terpercaya</p>
+                    <p class="text-sm mt-2 text-white/90">SMPN 2 Gunung Jati</p>
+                    <div class="flex justify-center gap-2 mt-12">
+                        <div class="w-3 h-3 bg-white rounded-full animate-bounce"></div>
+                        <div class="w-3 h-3 bg-white rounded-full animate-bounce" style="animation-delay: 150ms"></div>
+                        <div class="w-3 h-3 bg-white rounded-full animate-bounce" style="animation-delay: 300ms"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- LOGIN SCREEN -->
+            <div id="loginScreen" class="hidden h-full flex flex-col justify-center p-8">
+                <div class="flex justify-center mb-8">
+                    <div class="flex items-center gap-3">
+                        <i class="fa-solid fa-shield-halved text-5xl text-[#00E0B8]"></i>
+                        <span class="text-4xl font-bold tracking-wider">Trackextra</span>
+                    </div>
+                </div>
+                
+                <h1 class="text-3xl font-bold text-center mb-1">Masuk ke Akun</h1>
+                <p class="text-center text-white/70 mb-10">Absensi Ekskul SMPN 2 Gunung Jati</p>
+                
+                <div class="space-y-6">
+                    <div>
+                        <label class="block text-sm mb-2 text-white/80">Username / NISN</label>
+                        <input id="username" type="text" value="Adminpj2" 
+                               class="w-full bg-white/10 border border-white/30 rounded-3xl px-6 py-5 text-white focus:outline-none focus:border-[#00E0B8]">
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm mb-2 text-white/80">Kata Sandi</label>
+                        <input id="password" type="password" value="Pj2tracks" 
+                               class="w-full bg-white/10 border border-white/30 rounded-3xl px-6 py-5 text-white focus:outline-none focus:border-[#00E0B8]">
+                    </div>
+                    
+                    <div class="flex gap-3 justify-center">
+                        <button onclick="pilihRole(this, 'siswa')" class="role-btn flex-1 py-4 rounded-3xl text-sm font-medium border border-white/30 hover:border-[#00E0B8]">Siswa</button>
+                        <button onclick="pilihRole(this, 'pelatih')" class="role-btn flex-1 py-4 rounded-3xl text-sm font-medium border border-white/30 hover:border-[#00E0B8]">Pelatih</button>
+                        <button onclick="pilihRole(this, 'admin')" class="role-btn flex-1 py-4 rounded-3xl text-sm font-medium bg-[#00E0B8] text-[#1E3A8A] font-bold">Admin</button>
+                    </div>
+                    
+                    <button onclick="login()" 
+                            class="btn-press w-full py-6 rounded-3xl text-2xl font-bold bg-gradient-to-r from-[#00E0B8] to-[#FF6B00]">
+                        MASUK
+                    </button>
+                    
+                    <p onclick="showRegister()" class="text-center text-[#FF6B00] font-medium cursor-pointer">Belum punya akun? Daftar sekarang</p>
+                </div>
+            </div>
+
+            <!-- MAIN APP -->
+            <div id="mainApp" class="hidden h-full flex flex-col">
+                <!-- HEADER -->
+                <div class="glass border-b border-white/20 px-6 py-5 flex items-center justify-between">
+                    <div class="flex items-center gap-3">
+                        <i class="fa-solid fa-shield-halved text-3xl text-[#00E0B8] logo-glow"></i>
+                        <span class="text-2xl font-bold tracking-wider">Trackextra</span>
+                    </div>
+                    <div onclick="logout()" class="flex items-center gap-3 cursor-pointer">
+                        <img id="profilePic" src="https://i.pravatar.cc/128?img=64" class="w-9 h-9 rounded-2xl object-cover border-2 border-[#00E0B8]">
+                        <div>
+                            <div id="userName" class="font-semibold text-sm"></div>
+                            <div id="userNISN" class="text-xs opacity-70"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- CONTENT -->
+                <div class="flex-1 p-6 overflow-auto" id="contentArea"></div>
+                
+                <!-- BOTTOM NAV -->
+                <div id="bottomNav" class="glass border-t border-white/20 py-4 px-6 flex justify-around text-xs"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentUser = null;
+        let currentRole = null;
+
+        function confettiExplosion() {
+            const colors = ['#00E0B8', '#FF6B00', '#1E3A8A', '#ffffff'];
+            for (let i = 0; i < 100; i++) {
+                const c = document.createElement('div');
+                c.className = 'confetti';
+                c.style.left = Math.random() * 100 + '%';
+                c.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                document.getElementById('appContainer').appendChild(c);
+                setTimeout(() => c.remove(), 4000);
+            }
+        }
+
+        function login() {
+            const username = document.getElementById('username').value.trim();
+            const password = document.getElementById('password').value.trim();
+            
+            if (username === "Adminpj2" && password === "Pj2tracks") {
+                currentRole = 'admin';
+                currentUser = {nama: "Admin PJ2", role: "Admin", nisn: "00000000"};
+            } else if (currentRole === 'siswa') {
+                currentUser = {nama: "Andi Saputra", role: "Siswa SMP", nisn: "12345678", kelas: "VIII A"};
+            } else if (currentRole === 'pelatih') {
+                currentUser = {nama: "Pak Budi", role: "Pelatih", nisn: "99999999"};
+            } else {
+                alert("Gunakan:\nUsername: Adminpj2\nPassword: Pj2tracks");
+                return;
+            }
+            
+            confettiExplosion();
+            document.getElementById('loginScreen').classList.add('hidden');
+            document.getElementById('mainApp').classList.remove('hidden');
+            document.getElementById('splash').style.opacity = '0';
+            setTimeout(() => document.getElementById('splash').remove(), 700);
+            
+            renderApp();
+        }
+
+        function pilihRole(btn, role) {
+            currentRole = role;
+            document.querySelectorAll('.role-btn').forEach(b => b.classList.remove('bg-[#00E0B8]', 'text-[#1E3A8A]'));
+            btn.classList.add('bg-[#00E0B8]', 'text-[#1E3A8A]');
+        }
+
+        function logout() {
+            if (confirm("Keluar dari Trackextra?")) location.reload();
+        }
+
+        function showRegister() {
+            alert("Fitur daftar akun siswa SMPN 2 Gunung Jati akan ditambahkan di versi lengkap.");
+        }
+
+        function renderDashboard() {
+            const area = document.getElementById('contentArea');
+            if (currentRole === 'siswa') {
+                area.innerHTML = `
+                <div class="space-y-8">
+                    <div>
+                        <h1 class="text-4xl font-bold">Selamat Datang, ${currentUser.nama}!</h1>
+                        <p class="text-white/70">SMPN 2 Gunung Jati</p>
+                    </div>
+                    <div onclick="absenPage()" class="glass rounded-3xl p-8 text-center cursor-pointer">
+                        <div class="text-3xl font-bold">Latihan Pramuka</div>
+                        <div class="text-6xl font-bold text-[#00E0B8] my-4">15:30</div>
+                        <button class="w-full py-6 rounded-3xl bg-gradient-to-r from-[#00E0B8] to-[#FF6B00] text-xl font-bold">ABSEN SEKARANG</button>
+                    </div>
+                    <div class="grid grid-cols-2 gap-6">
+                        <div class="glass rounded-3xl p-6 text-center">
+                            <div class="text-6xl font-bold text-[#00E0B8]">94%</div>
+                            <p class="text-sm mt-2">Kehadiran Bulan Ini</p>
+                        </div>
+                        <div class="glass rounded-3xl p-6 text-center">
+                            <div class="text-5xl">🔥</div>
+                            <p class="text-sm mt-2">5 Hari Streak</p>
+                        </div>
+                    </div>
+                </div>`;
+            } else if (currentRole === 'admin') {
+                area.innerHTML = `
+                <div>
+                    <h1 class="text-4xl font-bold mb-8">Dashboard Admin</h1>
+                    <div class="grid grid-cols-3 gap-4">
+                        <div class="glass rounded-3xl p-6 text-center">Siswa<br><span class="text-5xl font-bold">98</span></div>
+                        <div class="glass rounded-3xl p-6 text-center">Pelatih<br><span class="text-5xl font-bold">7</span></div>
+                        <div class="glass rounded-3xl p-6 text-center">Hadir Hari Ini<br><span class="text-5xl font-bold text-[#00E0B8]">92%</span></div>
+                    </div>
+                </div>`;
+            }
+        }
+
+        function absenPage() {
+            const area = document.getElementById('contentArea');
+            area.innerHTML = `
+            <div>
+                <h1 class="text-4xl font-bold mb-8">Absensi Ekskul</h1>
+                <div class="glass rounded-3xl p-10 text-center space-y-6">
+                    <button onclick="catatAbsen('Hadir')" class="btn-press w-full py-8 rounded-3xl text-3xl font-bold bg-gradient-to-r from-[#00E0B8] to-white text-[#1E3A8A]">ABSEN HADIR</button>
+                    <button onclick="catatAbsen('Keluar')" class="btn-press w-full py-8 rounded-3xl text-3xl font-bold bg-gradient-to-r from-[#FF6B00] to-white text-[#1E3A8A]">ABSEN KELUAR</button>
+                </div>
+            </div>`;
+        }
+
+        function catatAbsen(status) {
+            confettiExplosion();
+            alert(`✅ Absen ${status} berhasil dicatat!\nTrackextra - Aman, Cepat, & Terpercaya`);
+            setTimeout(renderDashboard, 600);
+        }
+
+        function renderBottomNav() {
+            const nav = document.getElementById('bottomNav');
+            if (currentRole === 'siswa') {
+                nav.innerHTML = `
+                    <div onclick="renderDashboard()" class="flex flex-col items-center text-[#00E0B8]"><i class="fa-solid fa-house text-2xl"></i><span class="text-xs mt-1">Home</span></div>
+                    <div onclick="absenPage()" class="flex flex-col items-center"><i class="fa-solid fa-clipboard-check text-2xl"></i><span class="text-xs mt-1">Absen</span></div>
+                    <div onclick="alert('Riwayat akan ditampilkan di versi lengkap')" class="flex flex-col items-center"><i class="fa-solid fa-clock-rotate-left text-2xl"></i><span class="text-xs mt-1">Riwayat</span></div>`;
+            } else {
+                nav.innerHTML = `
+                    <div onclick="renderDashboard()" class="flex flex-col items-center text-[#00E0B8]"><i class="fa-solid fa-house text-2xl"></i><span class="text-xs mt-1">Home</span></div>
+                    <div onclick="alert('Kelola Pengguna SMPN 2 Gunung Jati')" class="flex flex-col items-center"><i class="fa-solid fa-users-gear text-2xl"></i><span class="text-xs mt-1">Pengguna</span></div>`;
+            }
+        }
+
+        function renderApp() {
+            document.getElementById('userName').textContent = currentUser.nama;
+            document.getElementById('userNISN').textContent = currentUser.nisn || currentUser.role;
+            renderBottomNav();
+            renderDashboard();
+        }
+
+        window.onload = () => {
+            setTimeout(() => {
+                document.getElementById('splash').classList.add('hidden');
+                document.getElementById('loginScreen').classList.remove('hidden');
+            }, 1800);
+        };
+    </script>
+</body>
+</html>
